@@ -8,34 +8,43 @@ import android.view.View;
  * ListView GridView 通用ViewHolder
  */
 public class ViewHolder {
+    public static final int viewSizeUndefined = -1;
+    private View itemView;
+    private SparseArray<View> viewList;
 
-    public static <T extends View> T get(View convertView, @IdRes int id, int viewSize) {
-        SparseArray<View> viewHolder = (SparseArray<View>) convertView.getTag();
-        if (viewHolder == null) {
-            viewHolder = new SparseArray<View>(viewSize);
-            convertView.setTag(viewHolder);
-        }
-        View childView = viewHolder.get(id);
+    public ViewHolder(View itemView, int viewSize) {
+        this.itemView = itemView;
+        this.viewList = new SparseArray<View>(viewSize == viewSizeUndefined ? 10 : viewSize);
+    }
+
+    public int countView() {
+        return viewList.size();
+    }
+
+    public <T extends View> T get(@IdRes int id) {
+        View childView = viewList.get(id);
         if (childView == null) {
-            childView = convertView.findViewById(id);
-            viewHolder.put(id, childView);
+            childView = itemView.findViewById(id);
+            viewList.put(id, childView);
         }
         return (T) childView;
 
     }
 
-    public static <T extends View> T get(View convertView, @IdRes int id) {
-        SparseArray<View> viewHolder = (SparseArray<View>) convertView.getTag();
-        if (viewHolder == null) {
-            viewHolder = new SparseArray<View>();
-            convertView.setTag(viewHolder);
-        }
-        View childView = viewHolder.get(id);
+    public <T extends View> T get(@IdRes int id, Class<T> viewType) {
+        View childView = viewList.get(id);
         if (childView == null) {
-            childView = convertView.findViewById(id);
-            viewHolder.put(id, childView);
+            childView = itemView.findViewById(id);
+            viewList.put(id, childView);
         }
-        return (T) childView;
-
+        if (childView == null) {
+            return null;
+        }
+        try {
+            //noinspection unchecked
+            return (T) childView;
+        } catch (ClassCastException e) {
+            return null;
+        }
     }
 }

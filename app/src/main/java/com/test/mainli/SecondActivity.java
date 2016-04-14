@@ -2,7 +2,6 @@ package com.test.mainli;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,17 +26,12 @@ public class SecondActivity extends AppCompatActivity {
         for (int i = 0; i < 12; i++) {
             list.add("test:" + i);
         }
-        mListView.setAdapter(new AbstractBaseAdapter<String>(list) {
+        mListView.setAdapter(new AbstractBaseAdapter<String>(list, R.layout.item) {
             @Override
-            public int getItemResource() {
-                return R.layout.item;
-            }
-
-            @Override
-            public View getItemView(int position, View convertView, String s) {
-                TextView textView = ViewHolder.get(convertView, R.id.text, 1);
-                textView.setText(s);
-                return convertView;
+            public void getItemView(int position, ViewHolder holder, String s) {
+                TextView tv = holder.get(R.id.text1);
+                tv.setText(s);
+                holder.get(R.id.text, TextView.class).setText(s);
             }
         });
     }

@@ -1,9 +1,12 @@
 package com.mainli.adapterlib.adapter;
 
+import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.mainli.adapterlib.viewholder.ViewHolder;
 
 import java.util.List;
 
@@ -11,11 +14,14 @@ import java.util.List;
  * 基类adapter
  */
 public abstract class AbstractBaseAdapter<T> extends BaseAdapter {
-
     protected List<T> mListData;
+    @LayoutRes
+    private int mLayoutId;
+    private int mViewSize = ViewHolder.viewSizeUndefined;
 
-    public AbstractBaseAdapter(List<T> mListData) {
+    public AbstractBaseAdapter(List<T> mListData, @LayoutRes int layoutId) {
         this.mListData = mListData;
+        this.mLayoutId = layoutId;
     }
 
     public void remove(int position) {
@@ -74,13 +80,18 @@ public abstract class AbstractBaseAdapter<T> extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder vh;
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(getItemResource(), null);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(mLayoutId, parent, false);
+            vh = new ViewHolder(convertView, mViewSize);
+            convertView.setTag(vh);
+        } else {
+            vh = (ViewHolder) convertView.getTag();
         }
-        return getItemView(position, convertView,getItem(position));
+        getItemView(position, vh, getItem(position));
+        mViewSize = vh.countView();
+        return convertView;
     }
 
-    public abstract int getItemResource();
-
-    public abstract View getItemView(int position, View convertView,T t);
+    public abstract void getItemView(int position, ViewHolder holder, T t);
 }
