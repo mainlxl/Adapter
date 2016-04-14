@@ -1,15 +1,17 @@
-package com.test.mainli;
+package com.mainli.universaladapter.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import com.mainli.universaladapter.viewholder.RViewHolder;
 
 import java.util.List;
 
 /**
  * Created by Mainli on 2016/4/13.
  */
-public abstract class MultiRecyclerAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
+public abstract class MultiRecyclerAdapter<T> extends RecyclerView.Adapter<RViewHolder> {
     protected List<T> mData;
 
     public MultiRecyclerAdapter(List<T> mList) {
@@ -22,14 +24,14 @@ public abstract class MultiRecyclerAdapter<T> extends RecyclerView.Adapter<ViewH
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ViewHolder viewHolder = new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(getLayoutRessources(viewType), parent, false));
+    public RViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        RViewHolder viewHolder = new RViewHolder(LayoutInflater.from(parent.getContext()).inflate(getLayoutRessources(viewType), parent, false));
         viewHolder.setViewTypeflag(viewType);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(RViewHolder holder, int position) {
         this.onBindObject2View(holder, getItem(position), position);
     }
 
@@ -46,5 +48,5 @@ public abstract class MultiRecyclerAdapter<T> extends RecyclerView.Adapter<ViewH
 
     public abstract int getLayoutRessources(int viewType);
 
-    public abstract void onBindObject2View(ViewHolder vh, T t, int position);
+    public abstract void onBindObject2View(RViewHolder vh, T t, int position);
 }

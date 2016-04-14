@@ -1,4 +1,4 @@
-package com.test.mainli;
+package com.mainli.universaladapter.viewholder;
 
 import android.support.annotation.IdRes;
 import android.support.v7.widget.RecyclerView;
@@ -8,16 +8,18 @@ import android.widget.TextView;
 
 /**
  * Created by Mainli on 2016/4/13.
+ * RecyclerView - ViewHolder
  */
-public class ViewHolder extends RecyclerView.ViewHolder {
+public class RViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;
     private int viewTypeflag;
 
-    public ViewHolder(View itemView) {
+    public RViewHolder(View itemView) {
         super(itemView);
         mViews = new SparseArray<View>();
     }
-    public ViewHolder(View itemView,int viewTypeflag) {
+
+    public RViewHolder(View itemView, int viewTypeflag) {
         super(itemView);
         mViews = new SparseArray<View>();
         this.viewTypeflag = viewTypeflag;

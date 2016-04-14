@@ -1,9 +1,12 @@
-package com.test.mainli;
+package com.mainli.universaladapter.adapter;
+
 
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import com.mainli.universaladapter.viewholder.RViewHolder;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,7 +15,7 @@ import java.util.Map;
 /**
  * Created by Mainli on 2016/4/13.
  */
-public abstract class TitleGroupRecyclerAdapter<G, T> extends RecyclerView.Adapter<ViewHolder> {
+public abstract class TitleGroupRecyclerAdapter<G, T> extends RecyclerView.Adapter<RViewHolder> {
     protected Map<G, List<T>> mData;
     private SparseArray<G> mGroupIndexs;
     private SparseArray<T> mChildIndexs;
@@ -26,12 +29,12 @@ public abstract class TitleGroupRecyclerAdapter<G, T> extends RecyclerView.Adapt
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(getLayoutRessources(viewType), parent, false), viewType);
+    public RViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new RViewHolder(LayoutInflater.from(parent.getContext()).inflate(getLayoutRessources(viewType), parent, false), viewType);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(RViewHolder holder, int position) {
         onBindObject2View(holder, getGroupItem(position), getChildItem(position), position);
     }
 
@@ -90,7 +93,7 @@ public abstract class TitleGroupRecyclerAdapter<G, T> extends RecyclerView.Adapt
         return getChildItem(position) == null ? TITLE_LAYOUT_TYOE : ITEM_LAYOUT_TYOE;
     }
 
-    public abstract void onBindObject2View(ViewHolder vh, G g, T t, int position);
+    public abstract void onBindObject2View(RViewHolder vh, G g, T t, int position);
 
     public abstract int getLayoutRessources(int viewType);
 }

@@ -1,9 +1,13 @@
 package com.test.mainli;
 
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.mainli.universaladapter.adapter.RecyclerAdapter;
+import com.mainli.universaladapter.viewholder.RViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,20 +42,40 @@ public class TestActivity extends AppCompatActivity {
         map.put("组3", list3);
         mRecycleView = (RecyclerView) findViewById(R.id.recycleView);
         mRecycleView.setLayoutManager(new LinearLayoutManager(this));
-//        mRecycleView.setAdapter(new RecyclerAdapter<String>(list1) {
+        //--------------1.普通的适配器--------------------------------------------------
+        mRecycleView.setAdapter(new RecyclerAdapter<String>(list1) {
+            @Override
+            public int getLayoutRessources(int viewType) {
+                return R.layout.item;
+            }
+
+            @Override
+            public void onBindObject2View(RViewHolder vh, String s, int position) {
+                vh.setText(R.id.text, s);
+            }
+        });
+        //--------------2.带title的适配器--------------------------------------------------
+//        mRecycleView.setAdapter(new MultiRecyclerAdapter<String>(list2) {
+//
 //            @Override
-//            public int getLayoutRessources(int viewType) {
-//                return R.layout.item;
+//            public int getItemViewType(String s, int position) {
+//                return Integer.valueOf(s.substring(s.length() - 1, s.length())) % 2 == 0 ? 0 : 1;
 //            }
 //
 //            @Override
-//            public void onBindObject2View(ViewHolder vh, String s, int position) {
-//                vh.setText(R.id.text, s);
+//            public int getLayoutRessources(int viewType) {
+//                return viewType == 0 ? R.layout.item : R.layout.item1;
+//            }
+//
+//            @Override
+//            public void onBindObject2View(RViewHolder vh, String s, int position) {
+//                vh.setText(vh.getViewTypeflag() == 0 ? R.id.text : R.id.text1, s);
 //            }
 //        });
+        //--------------3.带title的适配器--------------------------------------------------
 //        mRecycleView.setAdapter(new TitleGroupRecyclerAdapter<String, String>(map) {
 //            @Override
-//            public void onBindObject2View(ViewHolder vh, String s, String s2, int position) {
+//            public void onBindObject2View(RViewHolder vh, String s, String s2, int position) {
 //                if (vh.getViewTypeflag() == ITEM_LAYOUT_TYOE) {
 //                    vh.setText(R.id.text, s2);
 //                } else {
@@ -66,22 +90,5 @@ public class TestActivity extends AppCompatActivity {
 //                else return R.layout.item1;
 //            }
 //        });
-        mRecycleView.setAdapter(new MultiRecyclerAdapter<String>(list2) {
-
-            @Override
-            public int getItemViewType(String s, int position) {
-                return Integer.valueOf(s.substring(s.length() - 1, s.length())) % 2 == 0 ? 0 : 1;
-            }
-
-            @Override
-            public int getLayoutRessources(int viewType) {
-                return viewType == 0 ? R.layout.item : R.layout.item1;
-            }
-
-            @Override
-            public void onBindObject2View(ViewHolder vh, String s, int position) {
-                vh.setText(vh.getViewTypeflag() == 0 ? R.id.text : R.id.text1, s);
-            }
-        });
     }
 }
