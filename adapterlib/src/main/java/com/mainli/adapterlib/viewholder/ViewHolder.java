@@ -1,5 +1,6 @@
 package com.mainli.adapterlib.viewholder;
 
+import android.support.annotation.IdRes;
 import android.util.SparseArray;
 import android.view.View;
 
@@ -8,7 +9,7 @@ import android.view.View;
  */
 public class ViewHolder {
 
-    public static <T extends View> T get(View convertView, int id, int viewSize) {
+    public static <T extends View> T get(View convertView, @IdRes int id, int viewSize) {
         SparseArray<View> viewHolder = (SparseArray<View>) convertView.getTag();
         if (viewHolder == null) {
             viewHolder = new SparseArray<View>(viewSize);
@@ -23,7 +24,7 @@ public class ViewHolder {
 
     }
 
-    public static <T extends View> T get(View convertView, int id) {
+    public static <T extends View> T get(View convertView, @IdRes int id) {
         SparseArray<View> viewHolder = (SparseArray<View>) convertView.getTag();
         if (viewHolder == null) {
             viewHolder = new SparseArray<View>();
