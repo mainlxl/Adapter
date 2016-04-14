@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.mainli.universaladapter.adapter.RecyclerAdapter;
-import com.mainli.universaladapter.viewholder.RViewHolder;
+import com.mainli.adapterlib.adapter.RecyclerAdapter;
+import com.mainli.adapterlib.viewholder.RViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;

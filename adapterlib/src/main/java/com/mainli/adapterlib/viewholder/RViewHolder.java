@@ -1,4 +1,4 @@
-package com.mainli.universaladapter.viewholder;
+package com.mainli.adapterlib.viewholder;
 
 import android.support.annotation.IdRes;
 import android.support.v7.widget.RecyclerView;

@@ -1,10 +1,10 @@
-package com.mainli.universaladapter.adapter;
+package com.mainli.adapterlib.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.mainli.universaladapter.viewholder.RViewHolder;
+import com.mainli.adapterlib.viewholder.RViewHolder;
 
 import java.util.List;
 

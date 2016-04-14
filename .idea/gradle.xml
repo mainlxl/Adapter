@@ -9,8 +9,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/adapterlib" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/universalAdapter" />
           </set>
         </option>
       </GradleProjectSettings>

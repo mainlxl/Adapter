@@ -1,4 +1,4 @@
-package com.mainli.universaladapter.viewholder;
+package com.mainli.adapterlib.viewholder;
 
 import android.util.SparseArray;
 import android.view.View;
