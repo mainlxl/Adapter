@@ -4,6 +4,8 @@ import android.support.annotation.IdRes;
 import android.util.SparseArray;
 import android.view.View;
 
+import com.mainli.adapterlib.ViewHolderHelper;
+
 /**
  * ListView GridView 通用ViewHolder
  */
@@ -22,29 +24,10 @@ public class ViewHolder {
     }
 
     public <T extends View> T get(@IdRes int id) {
-        View childView = viewList.get(id);
-        if (childView == null) {
-            childView = itemView.findViewById(id);
-            viewList.put(id, childView);
-        }
-        return (T) childView;
-
+        return get(id, null);
     }
 
     public <T extends View> T get(@IdRes int id, Class<T> viewType) {
-        View childView = viewList.get(id);
-        if (childView == null) {
-            childView = itemView.findViewById(id);
-            viewList.put(id, childView);
-        }
-        if (childView == null) {
-            return null;
-        }
-        try {
-            //noinspection unchecked
-            return (T) childView;
-        } catch (ClassCastException e) {
-            return null;
-        }
+        return ViewHolderHelper.get(itemView, viewList, id, viewType);
     }
 }

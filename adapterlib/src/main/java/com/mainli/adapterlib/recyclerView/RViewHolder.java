@@ -6,6 +6,8 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mainli.adapterlib.ViewHolderHelper;
+
 /**
  * Created by Mainli on 2016/4/13.
  * RecyclerView - ViewHolder
@@ -20,20 +22,11 @@ public class RViewHolder extends RecyclerView.ViewHolder {
     }
 
     public <T extends View> T getView(@IdRes int id) {
-        View view = mViews.get(id);
-        if (view == null) {
-            view = itemView.findViewById(id);
-            mViews.put(id, view);
-        }
-        if (view == null) {
-            return null;
-        }
-        try {
-            //noinspection unchecked
-            return (T) view;
-        } catch (ClassCastException e) {
-            return null;
-        }
+        return get(id, null);
+    }
+
+    public <T extends View> T get(@IdRes int id, Class<T> viewType) {
+        return ViewHolderHelper.get(itemView, mViews, id, viewType);
     }
 
     /* package */ int countView() {
