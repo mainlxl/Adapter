@@ -1,4 +1,4 @@
-package com.mainli.adapterlib.viewholder;
+package com.mainli.adapterlib.recyclerView;
 
 import android.support.annotation.IdRes;
 import android.support.v7.widget.RecyclerView;
@@ -6,40 +6,31 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mainli.adapterlib.ViewHolderHelper;
+
 /**
  * Created by Mainli on 2016/4/13.
  * RecyclerView - ViewHolder
  */
 public class RViewHolder extends RecyclerView.ViewHolder {
+    public static final int viewSizeUndefined = -1;
     private SparseArray<View> mViews;
-    private int viewTypeflag;
 
-    public RViewHolder(View itemView) {
+    /* package */ RViewHolder(View itemView, int viewSize) {
         super(itemView);
-        mViews = new SparseArray<View>();
-    }
-
-    public RViewHolder(View itemView, int viewTypeflag) {
-        super(itemView);
-        mViews = new SparseArray<View>();
-        this.viewTypeflag = viewTypeflag;
+        mViews = new SparseArray<>(viewSize);
     }
 
     public <T extends View> T getView(@IdRes int id) {
-        View view = mViews.get(id);
-        if (view == null) {
-            view = itemView.findViewById(id);
-            mViews.put(id, view);
-        }
-        return (T) view;
+        return get(id, null);
     }
 
-    public int getViewTypeflag() {
-        return viewTypeflag;
+    public <T extends View> T get(@IdRes int id, Class<T> viewType) {
+        return ViewHolderHelper.get(itemView, mViews, id, viewType);
     }
 
-    public void setViewTypeflag(int viewTypeflag) {
-        this.viewTypeflag = viewTypeflag;
+    /* package */ int countView() {
+        return mViews.size();
     }
 
     //------------------------------辅助方法---------------------------------------------------------------------
