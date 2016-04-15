@@ -11,18 +11,12 @@ import android.widget.TextView;
  * RecyclerView - ViewHolder
  */
 public class RViewHolder extends RecyclerView.ViewHolder {
+    public static final int viewSizeUndefined = -1;
     private SparseArray<View> mViews;
-    private int viewTypeflag;
 
-    public RViewHolder(View itemView) {
+    public RViewHolder(View itemView, int viewSize) {
         super(itemView);
-        mViews = new SparseArray<View>();
-    }
-
-    public RViewHolder(View itemView, int viewTypeflag) {
-        super(itemView);
-        mViews = new SparseArray<View>();
-        this.viewTypeflag = viewTypeflag;
+        mViews = new SparseArray<>(viewSize);
     }
 
     public <T extends View> T getView(@IdRes int id) {
@@ -31,15 +25,19 @@ public class RViewHolder extends RecyclerView.ViewHolder {
             view = itemView.findViewById(id);
             mViews.put(id, view);
         }
-        return (T) view;
+        if (view == null) {
+            return null;
+        }
+        try {
+            //noinspection unchecked
+            return (T) view;
+        } catch (ClassCastException e) {
+            return null;
+        }
     }
 
-    public int getViewTypeflag() {
-        return viewTypeflag;
-    }
-
-    public void setViewTypeflag(int viewTypeflag) {
-        this.viewTypeflag = viewTypeflag;
+    public int countView() {
+        return mViews.size();
     }
 
     //------------------------------辅助方法---------------------------------------------------------------------
