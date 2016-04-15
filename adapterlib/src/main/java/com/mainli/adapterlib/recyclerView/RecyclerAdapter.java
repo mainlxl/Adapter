@@ -1,4 +1,4 @@
-package com.mainli.adapterlib.adapter;
+package com.mainli.adapterlib.recyclerView;
 
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
@@ -6,21 +6,23 @@ import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.mainli.adapterlib.viewholder.RViewHolder;
-
 import java.util.List;
 
 /**
  * 用于多种布局的RecyclerView 适配器
  * Created by Mainli on 2016/4/13.
  */
-public abstract class MultiRecyclerAdapter<T> extends RecyclerView.Adapter<RViewHolder> {
+public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RViewHolder> {
     @LayoutRes
     private final int[] mLayoutIds;
     private final SparseIntArray mViewSizes;
     protected List<T> mData;
 
-    public MultiRecyclerAdapter(List<T> mList, @LayoutRes int[] layoutIds) {
+    public RecyclerAdapter(List<T> mList, @LayoutRes int layoutIds) {
+        this(mList, new int[]{layoutIds});
+    }
+
+    public RecyclerAdapter(List<T> mList, @LayoutRes int[] layoutIds) {
         this.mData = mList;
         this.mLayoutIds = layoutIds;
         this.mViewSizes = new SparseIntArray(mLayoutIds.length);

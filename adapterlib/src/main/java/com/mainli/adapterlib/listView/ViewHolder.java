@@ -1,4 +1,4 @@
-package com.mainli.adapterlib.viewholder;
+package com.mainli.adapterlib.listView;
 
 import android.support.annotation.IdRes;
 import android.util.SparseArray;
@@ -12,12 +12,12 @@ public class ViewHolder {
     private View itemView;
     private SparseArray<View> viewList;
 
-    public ViewHolder(View itemView, int viewSize) {
+    /* package */ ViewHolder(View itemView, int viewSize) {
         this.itemView = itemView;
-        this.viewList = new SparseArray<View>(viewSize == viewSizeUndefined ? 10 : viewSize);
+        this.viewList = new SparseArray<>(viewSize == viewSizeUndefined ? 10 : viewSize);
     }
 
-    public int countView() {
+    /* package */ int countView() {
         return viewList.size();
     }
 

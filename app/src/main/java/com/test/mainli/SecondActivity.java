@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.mainli.adapterlib.adapter.AbstractBaseAdapter;
-import com.mainli.adapterlib.viewholder.ViewHolder;
+import com.mainli.adapterlib.listView.AbstractBaseAdapter;
+import com.mainli.adapterlib.listView.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;

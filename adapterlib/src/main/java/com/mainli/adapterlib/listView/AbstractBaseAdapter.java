@@ -1,12 +1,10 @@
-package com.mainli.adapterlib.adapter;
+package com.mainli.adapterlib.listView;
 
 import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-
-import com.mainli.adapterlib.viewholder.ViewHolder;
 
 import java.util.List;
 

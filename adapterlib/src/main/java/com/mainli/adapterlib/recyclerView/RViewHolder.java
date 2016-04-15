@@ -1,4 +1,4 @@
-package com.mainli.adapterlib.viewholder;
+package com.mainli.adapterlib.recyclerView;
 
 import android.support.annotation.IdRes;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +14,7 @@ public class RViewHolder extends RecyclerView.ViewHolder {
     public static final int viewSizeUndefined = -1;
     private SparseArray<View> mViews;
 
-    public RViewHolder(View itemView, int viewSize) {
+    /* package */ RViewHolder(View itemView, int viewSize) {
         super(itemView);
         mViews = new SparseArray<>(viewSize);
     }
@@ -36,7 +36,7 @@ public class RViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    public int countView() {
+    /* package */ int countView() {
         return mViews.size();
     }
 
