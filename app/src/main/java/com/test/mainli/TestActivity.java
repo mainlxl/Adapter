@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.mainli.adapterlib.recyclerView.RViewHolder;
-import com.mainli.adapterlib.recyclerView.RecyclerAdapter;
+import com.mainli.adapterlib.recyclerView.TitleGroupRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,30 +43,30 @@ public class TestActivity extends AppCompatActivity {
         mRecycleView = (RecyclerView) findViewById(R.id.recycleView);
         mRecycleView.setLayoutManager(new LinearLayoutManager(this));
         //--------------1.普通的适配器--------------------------------------------------
-        mRecycleView.setAdapter(new RecyclerAdapter<String>(list1, R.layout.item) {
-
-            @Override
-            public void onBindObject2View(RViewHolder vh, String s, int position) {
-                vh.setText(R.id.text, s);
-            }
-        });
-        //--------------3.带title的适配器--------------------------------------------------
-//        mRecycleView.setAdapter(new TitleGroupRecyclerAdapter<String, String>(map) {
-//            @Override
-//            public void onBindObject2View(RViewHolder vh, String s, String s2, int position) {
-//                if (vh.getViewTypeflag() == ITEM_LAYOUT_TYOE) {
-//                    vh.setText(R.id.text, s2);
-//                } else {
-//                    vh.setText(R.id.text1, s);
-//                }
-//            }
+//        mRecycleView.setAdapter(new RecyclerAdapter<String>(list1, R.layout.item) {
 //
 //            @Override
-//            public int getLayoutRessources(int viewType) {
-//                if (viewType == this.ITEM_LAYOUT_TYOE)
-//                    return R.layout.item;
-//                else return R.layout.item1;
+//            public void onBindObject2View(RViewHolder vh, String s, int position) {
+//                vh.setText(R.id.text, s);
 //            }
 //        });
+        //--------------3.带title的适配器--------------------------------------------------
+        mRecycleView.setAdapter(new TitleGroupRecyclerAdapter<String, String>(map) {
+            @Override
+            public void onBindObject2View(RViewHolder vh, String s, String s2, int position) {
+                if (vh.getItemViewType() == ITEM_LAYOUT_TYOE) {
+                    vh.setText(R.id.text, s2);
+                } else {
+                    vh.setText(R.id.text, s);
+                }
+            }
+
+            @Override
+            public int getLayoutResources(int viewType) {
+                if (viewType == this.ITEM_LAYOUT_TYOE)
+                    return R.layout.item;
+                else return R.layout.item1;
+            }
+        });
     }
 }

@@ -6,8 +6,6 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.mainli.adapterlib.recyclerView.RViewHolder;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +28,7 @@ public abstract class TitleGroupRecyclerAdapter<G, T> extends RecyclerView.Adapt
 
     @Override
     public RViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RViewHolder(LayoutInflater.from(parent.getContext()).inflate(getLayoutRessources(viewType), parent, false), viewType);
+        return new RViewHolder(LayoutInflater.from(parent.getContext()).inflate(getLayoutResources(viewType), parent, false), viewType);
     }
 
     @Override
@@ -95,5 +93,5 @@ public abstract class TitleGroupRecyclerAdapter<G, T> extends RecyclerView.Adapt
 
     public abstract void onBindObject2View(RViewHolder vh, G g, T t, int position);
 
-    public abstract int getLayoutRessources(int viewType);
+    public abstract int getLayoutResources(int viewType);
 }

@@ -14,13 +14,13 @@ import java.util.List;
 /**
  * Created by Mainli on 2016/4/14.
  */
-public class SecondActivity extends AppCompatActivity {
+public class ListViewActivity extends AppCompatActivity {
     ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_listview);
         mListView = (ListView) findViewById(R.id.listview);
         List<String> list = new ArrayList<String>();
         for (int i = 0; i < 12; i++) {
@@ -29,7 +29,7 @@ public class SecondActivity extends AppCompatActivity {
         mListView.setAdapter(new AbstractBaseAdapter<String>(list, R.layout.item) {
             @Override
             public void getItemView(int position, ViewHolder holder, String s) {
-                TextView tv = holder.get(R.id.text1);
+                TextView tv = holder.get(R.id.text);
                 tv.setText(s);
                 holder.get(R.id.text, TextView.class).setText(s);
             }
