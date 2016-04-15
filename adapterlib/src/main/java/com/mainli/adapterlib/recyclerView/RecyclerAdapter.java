@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RViewHolder> {
     @LayoutRes
     private final int[] mLayoutIds;
-    private final SparseIntArray mViewSizes;
+    private final int[] mViewSizes;
     protected List<T> mData;
 
     public RecyclerAdapter(List<T> mList, @LayoutRes int layoutIds) {
@@ -25,7 +25,10 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RViewHolde
     public RecyclerAdapter(List<T> mList, @LayoutRes int[] layoutIds) {
         this.mData = mList;
         this.mLayoutIds = layoutIds;
-        this.mViewSizes = new SparseIntArray(mLayoutIds.length);
+        this.mViewSizes = new int[mLayoutIds.length];
+        for (int i = 0; i < this.mViewSizes.length; i++) {
+            mViewSizes[i] = RViewHolder.viewSizeUndefined;
+        }
     }
 
     @Override
@@ -45,15 +48,14 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RViewHolde
          */
         return new RViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(mLayoutIds[viewType], parent, false),
-                mViewSizes.get(viewType, RViewHolder.viewSizeUndefined));
+                mViewSizes[viewType]);
     }
 
     @Override
     public void onBindViewHolder(RViewHolder holder, int position) {
         this.onBindObject2View(holder, getItem(position), position);
-        if (mViewSizes.get(holder.getItemViewType(), RViewHolder.viewSizeUndefined)
-                == RViewHolder.viewSizeUndefined) {
-            mViewSizes.put(holder.getItemViewType(), holder.countView());
+        if (mViewSizes[holder.getItemViewType()] == RViewHolder.viewSizeUndefined) {
+            mViewSizes[holder.getItemViewType()] = holder.countView();
         }
     }
 
