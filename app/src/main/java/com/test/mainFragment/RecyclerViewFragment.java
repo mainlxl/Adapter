@@ -1,4 +1,4 @@
-package mainFragment;
+package com.test.mainFragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by Admin on 2016/4/15.
  */
-public class MultiRecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,12 +30,7 @@ public class MultiRecyclerViewFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         List<String> list = Arrays.asList("1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3");
-        RecyclerAdapter<String> adapter = new RecyclerAdapter<String>(list, new int[]{R.layout.item1, R.layout.item}) {
-            @Override
-            public int getItemViewType(String s, int position) {
-                return position % 2;
-            }
-
+        RecyclerAdapter<String> adapter = new RecyclerAdapter<String>(list, R.layout.item1) {
             @Override
             public void onBindObject2View(RViewHolder vh, String s, int position) {
                 vh.get(R.id.text, TextView.class).setText(s);
