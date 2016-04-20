@@ -1,13 +1,10 @@
 package com.mainli.adapterlib.listView;
 
 import android.support.annotation.LayoutRes;
-import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-
-import com.mainli.adapterlib.recyclerView.RViewHolder;
 
 import java.util.List;
 
@@ -29,7 +26,7 @@ public abstract class AbstractBaseAdapter<T> extends BaseAdapter {
         this.mLayoutIds = layoutIds;
         this.mViewSizes = new int[mLayoutIds.length];
         for (int i = 0; i < this.mViewSizes.length; i++) {
-            mViewSizes[i] = RViewHolder.viewSizeUndefined;
+            mViewSizes[i] = ViewHolder.viewSizeUndefined;
         }
     }
 
@@ -124,9 +121,7 @@ public abstract class AbstractBaseAdapter<T> extends BaseAdapter {
      * 否则必须重写，判断并返回LayoutId在数组中的下标
      */
     public int getItemViewType(T t, int position) {
-        throw new UnsupportedOperationException("If {mLayoutIds.length > 1}" +
-                " you must override getItemViewType(t, position) method" +
-                " to return view type, in the layout ids array position.");
+        throw new UnsupportedOperationException("If {mLayoutIds.length > 1} you must override getItemViewType(t, position) method to return view type, in the layout ids array position.");
     }
 
     public abstract void getItemView(int position, ViewHolder holder, T t);
