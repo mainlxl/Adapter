@@ -29,7 +29,9 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        List<String> list = Arrays.asList("1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3");
+        List<String> list = Arrays.asList("1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2",//
+                "3", "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3",//
+                "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3");
         RecyclerAdapter<String> adapter = new RecyclerAdapter<String>(list, R.layout.item1) {
             @Override
             public void onBindObject2View(RViewHolder vh, String s, int position) {

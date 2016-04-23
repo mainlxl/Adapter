@@ -26,6 +26,13 @@ public abstract class TitleGroupRecyclerAdapter<G, T> extends RecyclerView.Adapt
         mChildIndexs = new SparseArray<T>();
     }
 
+    public void resetData(Map<G, List<T>> mData) {
+        this.mData = mData;
+        mGroupIndexs.clear();
+        mChildIndexs.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public RViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new RViewHolder(LayoutInflater.from(parent.getContext()).inflate(getLayoutResources(viewType), parent, false), viewType);

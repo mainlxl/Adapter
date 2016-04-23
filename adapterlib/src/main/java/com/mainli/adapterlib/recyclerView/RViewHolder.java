@@ -18,7 +18,7 @@ public class RViewHolder extends RecyclerView.ViewHolder {
 
     /* package */ RViewHolder(View itemView, int viewSize) {
         super(itemView);
-        mViews = new SparseArray<>(viewSize);
+        mViews = new SparseArray<View>(viewSize > 0 ? viewSize : 10);
     }
 
     public <T extends View> T getView(@IdRes int id) {

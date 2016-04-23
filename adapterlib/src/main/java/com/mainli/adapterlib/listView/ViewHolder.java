@@ -17,7 +17,7 @@ public class ViewHolder {
 
     /* package */ ViewHolder(View itemView, int viewSize, int itemViewType) {
         this.itemView = itemView;
-        this.viewList = new SparseArray<>(viewSize == viewSizeUndefined ? 10 : viewSize);
+        this.viewList = new SparseArray<View>(viewSize == viewSizeUndefined ? 10 : viewSize);
         this.itemViewType = itemViewType;
     }
 
