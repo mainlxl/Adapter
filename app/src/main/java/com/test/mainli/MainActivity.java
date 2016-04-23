@@ -15,17 +15,17 @@ import android.view.MenuItem;
 import com.test.mainFragment.MultiRecyclerViewFragment;
 import com.test.mainFragment.RecyclerViewFragment;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.tabLayout)
+    @BindView(R.id.tabLayout)
     TabLayout tabLayout;
-    @Bind(R.id.viewpager)
+    @BindView(R.id.viewpager)
     ViewPager viewpager;
-    @Bind(R.id.navigation)
+    @BindView(R.id.navigation)
     NavigationView navigation;
 
     @Override

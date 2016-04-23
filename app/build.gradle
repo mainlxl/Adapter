@@ -24,13 +24,10 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':adapterlib')
 
-    compile "com.android.support:support-v4:${supportLibsVersion}"
+    compile "com.android.support:support-v4:${rootProject.ext.supportLibsVersion}"
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibsVersion}"
     compile "com.android.support:design:${rootProject.ext.supportLibsVersion}"
 
     compile "com.jakewharton:butterknife:${rootProject.ext.butterknife}"
     apt "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknife}"
-}
-ext {
-    supportLibsVersion = '23.3.0';
 }
