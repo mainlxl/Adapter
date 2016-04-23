@@ -31,6 +31,43 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RViewHolde
         }
     }
 
+
+    public List<T> getList() {
+        return mData;
+    }
+
+    public void remove(int position) {
+        mData.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void remove(T t) {
+        if (mData.contains(t)) {
+            remove(mData.indexOf(t));
+        }
+    }
+
+    public void removeAll() {
+        mData.clear();
+        notifyDataSetChanged();
+    }
+
+    public void resetData(List<T> mListData) {
+        this.mData = mListData;
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<T> data) {
+        int size = mData.size();
+        mData.addAll(data);
+        notifyItemRangeInserted(size, data.size());
+    }
+
+    public void add(T t) {
+        mData.add(t);
+        notifyItemInserted(mData.size() - 1);
+    }
+
     @Override
     public int getItemCount() {
         return mData.size();

@@ -30,18 +30,13 @@ public abstract class AbstractBaseAdapter<T> extends BaseAdapter {
         }
     }
 
+    public List<T> getList() {
+        return mListData;
+    }
+
     public void remove(int position) {
         mListData.remove(position);
         notifyDataSetChanged();
-    }
-
-    @Override
-    public int getCount() {
-        return mListData.size();
-    }
-
-    public List<T> getList() {
-        return mListData;
     }
 
     public void remove(T t) {
@@ -69,6 +64,11 @@ public abstract class AbstractBaseAdapter<T> extends BaseAdapter {
     public void add(T t) {
         mListData.add(t);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public int getCount() {
+        return mListData.size();
     }
 
     @Override
